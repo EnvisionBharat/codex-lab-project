@@ -37,15 +37,23 @@
   .card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,0.2)}
   .card::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.03),transparent 70%);pointer-events:none}
   .icon{width:68px;height:68px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:28px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-  .products .card:nth-child(1) .icon{background:linear-gradient(135deg,#f59e0b,#ef4444)}
-  .products .card:nth-child(2) .icon{background:linear-gradient(135deg,#8b5cf6,#3b82f6)}
+  .products .card:nth-child(1) .icon{background:linear-gradient(135deg,#3b82f6,#06b6d4)}
+  .products .card:nth-child(2) .icon{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+  .products .card:nth-child(3) .icon{background:linear-gradient(135deg,#8b5cf6,#3b82f6)}
   .card h3{font-size:1.5rem;font-weight:800;margin-bottom:14px;letter-spacing:-0.5px}
   .card p{color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.7}
   .tag{display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--border);font-size:.78rem;font-weight:700;margin-top:24px;color:var(--a2);background:rgba(236,72,153,.08)}
   .cta-section{text-align:center;padding:140px 0}
   .cta-section h2{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;margin-bottom:20px;letter-spacing:-2px}
   .cta-section p{color:rgba(255,255,255,0.5);margin-bottom:36px;font-size:1.1rem}
-  footer{padding:50px 0;text-align:center;color:rgba(255,255,255,0.25);font-size:0.85rem;border-top:1px solid var(--border)}
+  footer{padding:70px 0 50px;border-top:1px solid var(--border);position:relative;z-index:1}
+  .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;margin-bottom:50px}
+  .footer-col h4{font-size:1rem;font-weight:700;margin-bottom:20px;color:#fff;letter-spacing:-0.3px}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .footer-col a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.9rem;transition:color .2s}
+  .footer-col a:hover{color:#fff}
+  .footer-col p{color:rgba(255,255,255,0.5);font-size:0.9rem;line-height:1.8}
+  .footer-bottom{text-align:center;color:rgba(255,255,255,0.25);font-size:0.85rem}
   .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
   .reveal.active{opacity:1;transform:translateY(0)}
   @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.hero{padding:140px 0 80px}section{padding:80px 0}.products{grid-template-columns:1fr}}
@@ -56,7 +64,7 @@
 <div class="blob" style="width:600px;height:600px;background:#7c3aed;top:-12%;left:-10%;animation:float 9s ease-in-out infinite alternate"></div>
 <div class="blob" style="width:500px;height:500px;background:#db2777;bottom:15%;right:-8%;animation:float 11s ease-in-out infinite alternate-reverse"></div>
 
-<<nav>
+<nav>
   <div class="container">
     <div class="logo">Envision Bharat</div>
     <ul class="nav-links" id="navLinks">
@@ -69,7 +77,7 @@
   </div>
 </nav>
 
-<<header class="hero">
+<header class="hero">
   <div class="container">
     <div class="badge">🔥 Built for Bharat 2.0</div>
     <h1>Re-imagining Commerce<br>for <span class="gradient-text">Bharat</span></h1>
@@ -83,8 +91,14 @@
     <h2 class="section-title reveal">Our Products</h2>
     <div class="products">
       <div class="card reveal">
+        <div class="icon">🛒</div>
+        <h3>NexPOS</h3>
+        <p>The ultimate Retail POS built for speed. From grocery stores to apparel outlets, manage billing, stock, and customers in one lightning-fast interface built for scale.</p>
+        <span class="tag">Retail & Outlets</span>
+      </div>
+      <div class="card reveal">
         <div class="icon">🍽️</div>
-        <h3>NexPOS KhaoJi</h3>
+        <h3>KhaoJi</h3>
         <p>The ultimate F&B POS built for speed. From quick-service counters to cloud kitchens, manage orders, inventory, and KDS in one lightning-fast interface built for scale.</p>
         <span class="tag">Restaurants & Cafés</span>
       </div>
@@ -106,8 +120,27 @@
   </div>
 </section>
 
-<<footer>
-  <div class="container">© <span id="year"></span> Envision Bharat. All rights reserved.</div>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo" style="margin-bottom:14px">Envision Bharat</div>
+        <p>Next-gen POS and AI infrastructure for the new generation of Indian businesses.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Ahmedabad, Gujarat<br>380061</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> Envision Bharat. All rights reserved.</div>
+  </div>
 </footer>
 
 <script>
