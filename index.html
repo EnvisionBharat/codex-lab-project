@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Envision Bharat — Next-Gen POS & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--a1:#8b5cf6;--a2:#ec4899;--a3:#f59e0b;--bg:#030305;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;line-height:1.6;overflow-x:hidden}
+  .container{width:min(1200px,92vw);margin:0 auto}
+  .noise{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.035;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;z-index:0}
+  @keyframes float{0%{transform:translate(0,0)}100%{transform:translate(40px,60px)}}
+  nav{position:fixed;top:0;left:0;width:100%;z-index:40;padding:20px 0;background:linear-gradient(to bottom,var(--bg),rgba(3,3,5,0))}
+  nav .container{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.5px;background:linear-gradient(135deg,#fff,var(--a1));-webkit-background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.9rem;font-weight:600;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .nav-links.active{display:flex;position:absolute;top:72px;right:4%;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px;flex-direction:column;gap:16px;backdrop-filter:blur(16px)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px}
+  .hero{position:relative;padding:180px 0 120px;text-align:center;z-index:1}
+  .badge{display:inline-block;padding:8px 18px;border:1px solid var(--border);border-radius:999px;font-size:.8rem;font-weight:700;color:var(--a3);margin-bottom:28px;background:rgba(245,158,11,.08)}
+  .hero h1{font-size:clamp(2.8rem,6.5vw,5.5rem);font-weight:800;letter-spacing:-3px;line-height:1.05;margin-bottom:24px}
+  .gradient-text{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;color:transparent}
+  .hero p{color:rgba(255,255,255,0.5);font-size:clamp(1.05rem,2vw,1.3rem);max-width:620px;margin:0 auto 40px}
+  .cta-btn{display:inline-block;padding:16px 36px;border-radius:999px;background:#fff;color:#000;font-weight:800;text-decoration:none;transition:transform .25s,box-shadow .25s}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(139,92,246,.4)}
+  section{padding:120px 0;position:relative;z-index:1}
+  .section-title{text-align:center;font-size:clamp(1.8rem,4vw,3rem);font-weight:800;margin-bottom:70px;letter-spacing:-2px}
+  .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:32px;padding:44px;backdrop-filter:blur(16px);transition:transform .35s,border-color .35s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,0.2)}
+  .card::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.03),transparent 70%);pointer-events:none}
+  .icon{width:68px;height:68px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:28px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .products .card:nth-child(1) .icon{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+  .products .card:nth-child(2) .icon{background:linear-gradient(135deg,#8b5cf6,#3b82f6)}
+  .card h3{font-size:1.5rem;font-weight:800;margin-bottom:14px;letter-spacing:-0.5px}
+  .card p{color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.7}
+  .tag{display:inline-block;padding:6px 16px;border-radius:999px;border:1px solid var(--border);font-size:.78rem;font-weight:700;margin-top:24px;color:var(--a2);background:rgba(236,72,153,.08)}
+  .cta-section{text-align:center;padding:140px 0}
+  .cta-section h2{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;margin-bottom:20px;letter-spacing:-2px}
+  .cta-section p{color:rgba(255,255,255,0.5);margin-bottom:36px;font-size:1.1rem}
+  footer{padding:50px 0;text-align:center;color:rgba(255,255,255,0.25);font-size:0.85rem;border-top:1px solid var(--border)}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+  .reveal.active{opacity:1;transform:translateY(0)}
+  @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.hero{padding:140px 0 80px}section{padding:80px 0}.products{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="blob" style="width:600px;height:600px;background:#7c3aed;top:-12%;left:-10%;animation:float 9s ease-in-out infinite alternate"></div>
+<div class="blob" style="width:500px;height:500px;background:#db2777;bottom:15%;right:-8%;animation:float 11s ease-in-out infinite alternate-reverse"></div>
+
+<<nav>
+  <div class="container">
+    <div class="logo">Envision Bharat</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<<header class="hero">
+  <div class="container">
+    <div class="badge">🔥 Built for Bharat 2.0</div>
+    <h1>Re-imagining Commerce<br>for <span class="gradient-text">Bharat</span></h1>
+    <p>Next-gen POS and AI infrastructure designed for the new generation of Indian businesses. Fast, fluid, and future-proof.</p>
+    <a href="#products" class="cta-btn">Explore the Ecosystem</a>
+  </div>
+</header>
+
+<section id="products">
+  <div class="container">
+    <h2 class="section-title reveal">Our Products</h2>
+    <div class="products">
+      <div class="card reveal">
+        <div class="icon">🍽️</div>
+        <h3>NexPOS KhaoJi</h3>
+        <p>The ultimate F&B POS built for speed. From quick-service counters to cloud kitchens, manage orders, inventory, and KDS in one lightning-fast interface built for scale.</p>
+        <span class="tag">Restaurants & Cafés</span>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🤖</div>
+        <h3>Opto AI</h3>
+        <p>Intelligent retail analytics that sees what you miss. Demand forecasting, inventory optimisation, and real-time business insights powered by computer vision and LLMs.</p>
+        <span class="tag">AI-Powered Insights</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section reveal" id="contact">
+  <div class="container">
+    <h2>Ready to upgrade your stack?</h2>
+    <p>Join the businesses building the future with Envision Bharat.</p>
+    <a href="mailto:hello@envisionbharat.in" class="cta-btn">Get in Touch</a>
+  </div>
+</section>
+
+<<footer>
+  <div class="container">© <span id="year"></span> Envision Bharat. All rights reserved.</div>
+</footer>
+
+<script>
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
